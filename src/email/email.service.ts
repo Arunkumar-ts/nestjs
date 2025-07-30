@@ -36,3 +36,4 @@ export class EmailService {
     return this.sendMail(to, "Welcome back to Bookmark!", html);
   }
 }
+

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Post, UseGuards } from "@nestjs/common";
 import { FollowsService } from "./follows.service";
 import { GetUser } from "src/auth/decorator/get-user.decorator";
 import CommonResponse from "src/common/commonResponse/commonResponse";
@@ -34,14 +34,14 @@ export class FollowsController {
     }
   }
 
-  @Post(":userId")
+  @Post(":followingId")
   async createFollower(
     @GetUser("id") userId: number,
-    @Param("followingId") followingId: number,
+    @Param("followingId", ParseIntPipe) followingId: number
   ): Promise<CommonResponse> {
     const result: ReturnResponse = await this.followsService.createFollower(
       userId,
-      followingId,
+      followingId
     );
     if (result.success) {
       return CommonResponse.success(201, result.data, result.message);

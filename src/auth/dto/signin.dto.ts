@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional, OmitType } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class SignInDto {
@@ -15,10 +15,12 @@ export class SignInDto {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional()
-  firstName: string;
+  firstName?: string;
 
   @IsOptional()
   @IsString()
   @ApiPropertyOptional()
   lastName?: string;
 }
+
+export class SignInWithoutPasswordDto extends OmitType(SignInDto, ["password"]) {}
