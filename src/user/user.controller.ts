@@ -24,10 +24,20 @@ export class UserController {
     }
   }
 
+  @Get()
+  async getUsers(): Promise<CommonResponse> {
+    const result: ReturnResponse = await this.userService.getUsers();
+    if (result.success) {
+      return CommonResponse.success(201, result.data, result.message);
+    } else {
+      return CommonResponse.error(400, result.message, result.data);
+    }
+  }
+
   @Put()
   async editUser(
     @GetUser("id") userId: number,
-    @Body() dto: EditUserDto
+    @Body() dto: EditUserDto,
   ): Promise<CommonResponse> {
     const result: ReturnResponse = await this.userService.editUser(userId, dto);
     if (result.success) {

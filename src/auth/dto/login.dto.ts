@@ -6,7 +6,7 @@ export class LogInDto {
   @IsNotEmpty()
   @ApiProperty()
   email: string;
-  
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty()

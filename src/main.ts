@@ -19,7 +19,7 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
-    })
+    }),
   );
 
   const config = new DocumentBuilder()
@@ -28,7 +28,7 @@ async function bootstrap() {
     .setVersion("1.0")
     .addBearerAuth(
       { type: "http", scheme: "bearer", bearerFormat: "JWT" },
-      "jwt-auth"
+      "jwt-auth",
     )
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
@@ -40,11 +40,11 @@ async function bootstrap() {
 
   Logger.log(
     `🚀 Server at http://localhost:${process.env.PORT}/api ...`,
-    "Server"
+    "Server",
   );
   Logger.log(
     `🚀 Swagger at http://localhost:${process.env.PORT}/api-docs ...`,
-    "Swagger"
+    "Swagger",
   );
 }
 bootstrap();

@@ -36,7 +36,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         } else {
           errors = { details: [resObj.message || resObj.error] };
         }
-      } 
+      }
       // else {
       //   message = res as string;
       // }

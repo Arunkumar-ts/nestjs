@@ -9,7 +9,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
   constructor(
     config: ConfigService,
-    private readonly prisma: PrismaService
+    private readonly prisma: PrismaService,
   ) {
     const secretKey = config.get<string>("SECRETKEY")!;
     super({

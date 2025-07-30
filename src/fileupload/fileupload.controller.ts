@@ -45,13 +45,13 @@ export class FileuploadController {
       return CommonResponse.success(
         200,
         { filename: file.filename },
-        "File uploaded successfully!"
+        "File uploaded successfully!",
       );
     } catch (error) {
       return CommonResponse.error(
         404,
         "File upload failed",
-        error?.message || error
+        error?.message || error,
       );
     }
   }

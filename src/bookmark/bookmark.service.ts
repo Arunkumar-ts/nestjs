@@ -17,7 +17,7 @@ export class BookmarkService {
       });
       return ReturnResponse.createSuccess(
         "Bookmarks fetched successfully!",
-        bookmarks
+        bookmarks,
       );
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);
@@ -26,7 +26,7 @@ export class BookmarkService {
 
   async getBookmarkById(
     userId: number,
-    bookmarkId: number
+    bookmarkId: number,
   ): Promise<ReturnResponse> {
     try {
       const bookmark = await this.prisma.bookmark.findFirst({
@@ -40,7 +40,7 @@ export class BookmarkService {
       }
       return ReturnResponse.createSuccess(
         "Bookmark fetched successfully!",
-        bookmark
+        bookmark,
       );
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);
@@ -49,7 +49,7 @@ export class BookmarkService {
 
   async createBookmark(
     userId: number,
-    dto: CreateBookmarkDto
+    dto: CreateBookmarkDto,
   ): Promise<ReturnResponse> {
     try {
       const bookmark = await this.prisma.bookmark.create({
@@ -60,7 +60,7 @@ export class BookmarkService {
       });
       return ReturnResponse.createSuccess(
         "Bookmarks created successfully!",
-        bookmark
+        bookmark,
       );
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);
@@ -70,7 +70,7 @@ export class BookmarkService {
   async editBookmarkById(
     userId: number,
     dto: EditBookmarkDto,
-    bookmarkId: number
+    bookmarkId: number,
   ): Promise<ReturnResponse> {
     try {
       const bookmarkMatch = await this.prisma.bookmark.findUnique({
@@ -94,7 +94,7 @@ export class BookmarkService {
       });
       return ReturnResponse.createSuccess(
         "Bookmarks updated successfully!",
-        bookmark
+        bookmark,
       );
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);
@@ -103,7 +103,7 @@ export class BookmarkService {
 
   async deleteBookmarkById(
     userId: number,
-    bookmarkId: number
+    bookmarkId: number,
   ): Promise<ReturnResponse> {
     try {
       const bookmarkMatch = await this.prisma.bookmark.findUnique({
@@ -124,7 +124,7 @@ export class BookmarkService {
       });
       return ReturnResponse.createSuccess(
         "Bookmarks deleted successfully!",
-        bookmark
+        bookmark,
       );
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);

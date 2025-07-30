@@ -6,7 +6,8 @@ import { UserModule } from "./user/user.module";
 import { BookmarkModule } from "./bookmark/bookmark.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { FileuploadModule } from "./fileupload/fileupload.module";
-import { EmailModule } from './email/email.module';
+import { EmailModule } from "./email/email.module";
+import { FollowsModule } from "./follows/follows.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { EmailModule } from './email/email.module';
     PrismaModule,
     FileuploadModule,
     EmailModule,
+    FollowsModule,
   ],
 })
 export class AppModule {}

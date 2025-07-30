@@ -16,7 +16,7 @@ export class AuthService {
     private readonly prisma: PrismaService,
     private readonly config: ConfigService,
     private readonly jwt: JwtService,
-    private readonly emailService: EmailService
+    private readonly emailService: EmailService,
   ) {}
 
   async signin(dto: SignInDto): Promise<ReturnResponse> {
@@ -34,16 +34,16 @@ export class AuthService {
           email: true,
           createdAt: true,
           firstName: true,
-          lastName: true
+          lastName: true,
         },
       });
       // send welcome email
-      setTimeout(async()=>{
+      /*etTimeout(async()=>{
         await this.emailService.sendWelcomeEmail(
           user.email,
           user.firstName || user.email.split("@")[0]
         );
-      },1000);
+      },1000);*/
       return this.signToken(user.id, user.email);
     } catch (error) {
       if (
@@ -70,12 +70,12 @@ export class AuthService {
         return ReturnResponse.createFailure("Credentials incorrect!");
       }
       // send login email
-      setTimeout(async()=>{
+      /*setTimeout(async()=>{
         await this.emailService.sendLoginEmail(
           user.email,
           user.firstName || user.email.split("@")[0]
         );
-      },1000);
+      },1000);*/
       return this.signToken(user.id, user.email);
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);

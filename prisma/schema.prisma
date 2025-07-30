@@ -18,9 +18,22 @@ model User {
   firstName String?
   lastName  String?
 
-  bookmarks Bookmark[]
+  following Follows[] @relation("FollowingRelation")
+  followers Follows[] @relation("FollowersRelation")
+
+  bookmarks Bookmark[] 
 }
 
+model Follows {
+  id         Int   @id @default(autoincrement())
+  followerId Int
+  followedId Int
+
+  follower   User @relation("FollowersRelation", fields: [followerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  followed   User @relation("FollowingRelation", fields: [followedId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([followerId, followedId])
+}
 model Bookmark {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())

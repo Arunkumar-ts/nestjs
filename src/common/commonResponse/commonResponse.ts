@@ -8,7 +8,7 @@ export default class CommonResponse {
     code: number,
     message: string,
     data: object | null = null,
-    errors: object | null = null
+    errors: object | null = null,
   ) {
     this.code = code;
     this.message = message;
@@ -19,7 +19,7 @@ export default class CommonResponse {
   static success(
     code: number = 200,
     data: object | null = null,
-    message: string = "Success"
+    message: string = "Success",
   ): CommonResponse {
     return new CommonResponse(code, message, data, null);
   }
@@ -27,7 +27,7 @@ export default class CommonResponse {
   static error(
     code: number = 500,
     message: string = "Error",
-    errors: object | null = null
+    errors: object | null = null,
   ): CommonResponse {
     return new CommonResponse(code, message, null, errors);
   }

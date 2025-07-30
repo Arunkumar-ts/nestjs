@@ -38,11 +38,11 @@ export class BookmarkController {
   @Get(":id")
   async getBookmarkById(
     @GetUser("id") userId: number,
-    @Param("id", ParseIntPipe) bookmarkId: number
+    @Param("id", ParseIntPipe) bookmarkId: number,
   ): Promise<CommonResponse> {
     const result: ReturnResponse = await this.bookmarkService.getBookmarkById(
       userId,
-      bookmarkId
+      bookmarkId,
     );
     if (result.success) {
       return CommonResponse.success(200, result.data, result.message);
@@ -54,11 +54,11 @@ export class BookmarkController {
   @Post()
   async createBookmark(
     @GetUser("id") userId: number,
-    @Body() dto: CreateBookmarkDto
+    @Body() dto: CreateBookmarkDto,
   ): Promise<CommonResponse> {
     const result: ReturnResponse = await this.bookmarkService.createBookmark(
       userId,
-      dto
+      dto,
     );
     if (result.success) {
       return CommonResponse.success(201, result.data, result.message);
@@ -71,12 +71,12 @@ export class BookmarkController {
   async editBookmarkById(
     @GetUser("id") userId: number,
     @Body() dto: EditBookmarkDto,
-    @Param("id", ParseIntPipe) bookmarkId: number
+    @Param("id", ParseIntPipe) bookmarkId: number,
   ): Promise<CommonResponse> {
     const result: ReturnResponse = await this.bookmarkService.editBookmarkById(
       userId,
       dto,
-      bookmarkId
+      bookmarkId,
     );
     if (result.success) {
       return CommonResponse.success(201, result.data, result.message);
@@ -88,7 +88,7 @@ export class BookmarkController {
   @Delete(":id")
   async deleteBookmarkById(
     @GetUser("id") userId: number,
-    @Param("id", ParseIntPipe) bookmarkId: number
+    @Param("id", ParseIntPipe) bookmarkId: number,
   ): Promise<CommonResponse> {
     const result: ReturnResponse =
       await this.bookmarkService.deleteBookmarkById(userId, bookmarkId);

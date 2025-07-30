@@ -16,7 +16,7 @@ export class SignInDto {
   @IsOptional()
   @ApiPropertyOptional()
   firstName: string;
-  
+
   @IsOptional()
   @IsString()
   @ApiPropertyOptional()

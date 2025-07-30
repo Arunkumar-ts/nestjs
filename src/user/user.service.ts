@@ -58,7 +58,7 @@ export class UserService {
       ) {
         return ReturnResponse.createFailure(
           "Credentials taken!",
-          "Email already taken "
+          "Email already taken ",
         );
       }
       return ReturnResponse.createFailure("Internal server error", error);
@@ -81,6 +81,22 @@ export class UserService {
         },
       });
       return ReturnResponse.createSuccess("User deleted successfully!", user);
+    } catch (error) {
+      return ReturnResponse.createFailure("Internal server error", error);
+    }
+  }
+
+  async getUsers(): Promise<ReturnResponse> {
+    try {
+      const user = await this.prisma.user.findMany({
+        select: {
+          id: true,
+          email: true,
+          firstName: true,
+          lastName: true,
+        },
+      });
+      return ReturnResponse.createSuccess("Users fetched successfully!", user);
     } catch (error) {
       return ReturnResponse.createFailure("Internal server error", error);
     }
